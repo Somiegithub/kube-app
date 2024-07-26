@@ -20,3 +20,10 @@ spec:
           ports:
             - name: vproapp-port
               containerPort: 8080
+      initContainers:
+        - name: init-db
+          image: postgres:alpine
+          command: [ 'sh', '-c', 'echo "Initializing DB"; sleep 30' ]
+        - name: init-memcache
+          image: memcached:alpine
+          command: [ 'sh', '-c', 'echo "Starting Memcached"; sleep 10' ]
